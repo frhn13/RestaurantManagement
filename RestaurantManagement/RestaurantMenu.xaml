@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         x:Name="restaurantWindow"
         Title="RestaurantMenu" Height="800" Width="800">
+    
     <Grid x:Name="masterGrid" Background="Aquamarine">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.33*"/>
@@ -87,12 +88,12 @@
 
         <!--Costs showing-->
         <StackPanel Grid.Row="9" Grid.Column="0">
-            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20">Cost of Food:</TextBlock>
-            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0">Cost of Drinks:</TextBlock>
+            <TextBlock x:Name="foodCostBlock" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20">Cost of Food:</TextBlock>
+            <TextBlock x:Name="drinksCostBlock" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0">Cost of Drinks:</TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="9" Grid.Column="1">
-            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20" TextAlignment="Left">Total before VAT:</TextBlock>
-            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20" TextAlignment="Left">VAT:</TextBlock>
+            <TextBlock x:Name="beforeVatBlock" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20" TextAlignment="Left">Total before VAT:</TextBlock>
+            <TextBlock x:Name="vatBlock" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20" TextAlignment="Left">VAT:</TextBlock>
             <TextBlock x:Name="afterVatBlock" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0" TextAlignment="Left">Total after VAT:</TextBlock>
         </StackPanel>
 
