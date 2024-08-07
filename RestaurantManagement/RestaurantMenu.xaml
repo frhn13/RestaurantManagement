@@ -1,12 +1,13 @@
-﻿<Window x:Class="RestaurantManagement.MainWindow"
+﻿<Window x:Class="RestaurantManagement.RestaurantMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestaurantManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="800">
-    <Grid Background="Aquamarine">
+        x:Name="restaurantWindow"
+        Title="RestaurantMenu" Height="800" Width="800">
+    <Grid x:Name="masterGrid" Background="Aquamarine">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.33*"/>
             <ColumnDefinition Width="0.33*"/>
@@ -34,64 +35,71 @@
         <TextBlock Grid.Row="2" Grid.Column="0" Margin="10, 10, 10, 10" Text="Food" FontFamily="Georgia" FontSize="20" HorizontalAlignment="Center"/>
         <Canvas Grid.Row="3" Grid.Column="0" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Cheeseburger: £8</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="cheeseburgerBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="4" Grid.Column="0" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Beefburger: £10</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="beefburgerBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="5" Grid.Column="0" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Steak: £10.50</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="steakBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="6" Grid.Column="0" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Sausages: £8</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="sausagesBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="7" Grid.Column="0" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Chicken Burger: £11</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="chickenBurgerBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="8" Grid.Column="0" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Veggie Burger: £9</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="veggieBurgerBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         
         <!--Drinks-->
         <TextBlock Grid.Row="2" Grid.Column="1" Margin="10, 10, 10, 10" Text="Drinks" FontFamily="Georgia" FontSize="20" HorizontalAlignment="Center"/>
         <Canvas Grid.Row="3" Grid.Column="1" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Orange Juice: £2</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="orangeJuiceBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="4" Grid.Column="1" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Apple Juice: £2</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="appleJuiceBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="5" Grid.Column="1" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Tea: £2.50</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="teaBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="6" Grid.Column="1" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Coffee: £3</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="coffeeBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="7" Grid.Column="1" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Cola: £2</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="colaBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
         <Canvas Grid.Row="8" Grid.Column="1" Margin="10, 10, 10, 10">
             <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Lemonade: £2.50</TextBlock>
-            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+            <TextBox x:Name="lemonadeBox" Text="0" Canvas.Right="5" Height="30" Width="20" FontSize="20" FontFamily="Georgia" MaxLength="1" PreviewTextInput="NumberInputValidation" LostKeyboardFocus="Box_LostKeyboardFocus"/>
         </Canvas>
 
+        <!--Costs showing-->
         <StackPanel Grid.Row="9" Grid.Column="0">
-            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20">Cost of Food: </TextBlock>
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20">Cost of Food:</TextBlock>
             <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0">Cost of Drinks:</TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="9" Grid.Column="1">
             <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20" TextAlignment="Left">Total before VAT:</TextBlock>
             <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20" TextAlignment="Left">VAT:</TextBlock>
-            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0" TextAlignment="Left">Total after VAT:</TextBlock>
+            <TextBlock x:Name="afterVatBlock" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0" TextAlignment="Left">Total after VAT:</TextBlock>
         </StackPanel>
+
+        <!--Buttons-->
+        <Button Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" FontFamily="Georgia" FontSize="20" FontWeight="Bold" Margin="10, 10, 10, 10">Calculator</Button>
+        <Button Grid.Column="2" Grid.Row="4" Grid.RowSpan="2" FontFamily="Georgia" FontSize="20" FontWeight="Bold" Margin="10, 10, 10, 10" Click="Total_Click">Find Total</Button>
+        <Button Grid.Column="2" Grid.Row="6" Grid.RowSpan="2" FontFamily="Georgia" FontSize="20" FontWeight="Bold" Margin="10, 10, 10, 10" Click="Reset_Click">Reset</Button>
+        <Button Grid.Column="2" Grid.Row="8" FontFamily="Georgia" FontSize="20" FontWeight="Bold" Margin="10, 10, 10, 10">Sign Out</Button>
     </Grid>
 </Window>
