@@ -22,8 +22,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" TextAlignment="Center" FontSize="30" FontFamily="Georgia" TextWrapping="Wrap" FontWeight="Bold">
             Welcome to the Restaurant!
@@ -31,30 +30,68 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
                    Margin="10, 10, 10, 10" Text="Enter the number of each item you want to order" FontFamily="Georgia" FontSize="15" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
         
+        <!--Food-->
         <TextBlock Grid.Row="2" Grid.Column="0" Margin="10, 10, 10, 10" Text="Food" FontFamily="Georgia" FontSize="20" HorizontalAlignment="Center"/>
         <Canvas Grid.Row="3" Grid.Column="0" Margin="10, 10, 10, 10">
-            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Food: £12.40</TextBlock>
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Cheeseburger: £8</TextBlock>
             <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
         </Canvas>
         <Canvas Grid.Row="4" Grid.Column="0" Margin="10, 10, 10, 10">
-            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Food: £12.40</TextBlock>
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Beefburger: £10</TextBlock>
             <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
         </Canvas>
         <Canvas Grid.Row="5" Grid.Column="0" Margin="10, 10, 10, 10">
-            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Food: £12.40</TextBlock>
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Steak: £10.50</TextBlock>
             <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
         </Canvas>
         <Canvas Grid.Row="6" Grid.Column="0" Margin="10, 10, 10, 10">
-            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Food: £12.40</TextBlock>
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Sausages: £8</TextBlock>
             <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
         </Canvas>
         <Canvas Grid.Row="7" Grid.Column="0" Margin="10, 10, 10, 10">
-            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Food: £12.40</TextBlock>
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Chicken Burger: £11</TextBlock>
             <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
         </Canvas>
         <Canvas Grid.Row="8" Grid.Column="0" Margin="10, 10, 10, 10">
-            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Food: £12.40</TextBlock>
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Veggie Burger: £9</TextBlock>
             <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
         </Canvas>
+        
+        <!--Drinks-->
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="10, 10, 10, 10" Text="Drinks" FontFamily="Georgia" FontSize="20" HorizontalAlignment="Center"/>
+        <Canvas Grid.Row="3" Grid.Column="1" Margin="10, 10, 10, 10">
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Orange Juice: £2</TextBlock>
+            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+        </Canvas>
+        <Canvas Grid.Row="4" Grid.Column="1" Margin="10, 10, 10, 10">
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Apple Juice: £2</TextBlock>
+            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+        </Canvas>
+        <Canvas Grid.Row="5" Grid.Column="1" Margin="10, 10, 10, 10">
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Tea: £2.50</TextBlock>
+            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+        </Canvas>
+        <Canvas Grid.Row="6" Grid.Column="1" Margin="10, 10, 10, 10">
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Coffee: £3</TextBlock>
+            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+        </Canvas>
+        <Canvas Grid.Row="7" Grid.Column="1" Margin="10, 10, 10, 10">
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Cola: £2</TextBlock>
+            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+        </Canvas>
+        <Canvas Grid.Row="8" Grid.Column="1" Margin="10, 10, 10, 10">
+            <TextBlock Canvas.Left="5" FontFamily="Georgia" FontSize="15" FontWeight="Bold">Lemonade: £2.50</TextBlock>
+            <TextBox Canvas.Right="5" Height="30" Width="50" FontSize="15" FontFamily="Georgia"/>
+        </Canvas>
+
+        <StackPanel Grid.Row="9" Grid.Column="0">
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20">Cost of Food: </TextBlock>
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0">Cost of Drinks:</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="1">
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20" TextAlignment="Left">Total before VAT:</TextBlock>
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 20" TextAlignment="Left">VAT:</TextBlock>
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0" TextAlignment="Left">Total after VAT:</TextBlock>
+        </StackPanel>
     </Grid>
 </Window>
