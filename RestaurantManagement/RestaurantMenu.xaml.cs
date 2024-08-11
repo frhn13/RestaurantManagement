@@ -9,34 +9,57 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Collections;
 
 namespace RestaurantManagement
 {
     public partial class RestaurantMenu : Window
     {
+        List<List<string>> menuItems = new List<List<string>>();
+        List<double> itemTotals = new List<double>();
+        double total;
+        double foodTotal;
+        double drinksTotal;
+
         public RestaurantMenu()
         {
             InitializeComponent();
+            for (int i = 0; i < 12; i++)
+            {
+                menuItems.Add(new List<String>());  // Sets up 2d list to hold items later
+            }
         }
 
         private void Total_Click(object sender, RoutedEventArgs e)
         {
-            double total = 0;
-            double foodTotal = 0;
-            double drinksTotal = 0;
+            total = 0;
+            foodTotal = 0;
+            drinksTotal = 0;
 
             total += double.Parse(cheeseburgerBox.Text) * 8;
+            itemTotals.Add(double.Parse(cheeseburgerBox.Text) * 8);
             total += double.Parse(beefburgerBox.Text) * 10;
+            itemTotals.Add(double.Parse(beefburgerBox.Text) * 10);
             total += double.Parse(steakBox.Text) * 10.5;
+            itemTotals.Add(double.Parse(steakBox.Text) * 10.5);
             total += double.Parse(sausagesBox.Text) * 8;
+            itemTotals.Add(double.Parse(sausagesBox.Text) * 8);
             total += double.Parse(chickenBurgerBox.Text) * 11;
+            itemTotals.Add(double.Parse(chickenBurgerBox.Text) * 11);
             total += double.Parse(veggieBurgerBox.Text) * 9;
+            itemTotals.Add(double.Parse(veggieBurgerBox.Text) * 9);
             total += double.Parse(orangeJuiceBox.Text) * 2;
+            itemTotals.Add(double.Parse(orangeJuiceBox.Text) * 2);
             total += double.Parse(appleJuiceBox.Text) * 2;
+            itemTotals.Add(double.Parse(appleJuiceBox.Text) * 2);
             total += double.Parse(teaBox.Text) * 2.5;
+            itemTotals.Add(double.Parse(teaBox.Text) * 2.5);
             total += double.Parse(coffeeBox.Text) * 3;
+            itemTotals.Add(double.Parse(coffeeBox.Text) * 3);
             total += double.Parse(colaBox.Text) * 2;
+            itemTotals.Add(double.Parse(colaBox.Text) * 2);
             total += double.Parse(lemonadeBox.Text) * 2.5;
+            itemTotals.Add(double.Parse(lemonadeBox.Text) * 2.5);
 
             foodTotal += double.Parse(cheeseburgerBox.Text) * 8;
             foodTotal += double.Parse(beefburgerBox.Text) * 10;
@@ -81,6 +104,7 @@ namespace RestaurantManagement
             beforeVatBlock.Text = $"Total before VAT:";
             vatBlock.Text = $"VAT:";
             afterVatBlock.Text = $"Total after VAT:";
+            
         }
 
         private void NumberInputValidation(object sender, TextCompositionEventArgs e) // Checks amount entered is a number
@@ -101,6 +125,44 @@ namespace RestaurantManagement
                     ((TextBox)sender).Text = "0";
                 }
             }
+        }
+
+        private void Receipt_Click(object sender, RoutedEventArgs e)
+        {
+            menuItems[0].Add("Cheeseburger");
+            menuItems[0].Add(cheeseburgerBox.Text);
+            menuItems[1].Add("Beefburger");
+            menuItems[1].Add(beefburgerBox.Text);
+            menuItems[2].Add("Steak");
+            menuItems[2].Add(steakBox.Text);
+            menuItems[3].Add("Sausages");
+            menuItems[3].Add(sausagesBox.Text);
+            menuItems[4].Add("Chicken Burger");
+            menuItems[4].Add(chickenBurgerBox.Text);
+            menuItems[5].Add("Veggie Burger");
+            menuItems[5].Add(veggieBurgerBox.Text);
+
+            menuItems[6].Add("Orange Juice");
+            menuItems[6].Add(orangeJuiceBox.Text);
+            menuItems[7].Add("Apple Juice");
+            menuItems[7].Add(appleJuiceBox.Text);
+            menuItems[8].Add("Tea");
+            menuItems[8].Add(teaBox.Text);
+            menuItems[9].Add("Coffee");
+            menuItems[9].Add(coffeeBox.Text);
+            menuItems[10].Add("Cola");
+            menuItems[10].Add(colaBox.Text);
+            menuItems[11].Add("Lemonade");
+            menuItems[11].Add(lemonadeBox.Text);
+
+            Receipt receipt = new Receipt(menuItems, itemTotals, foodTotal, drinksTotal, total);
+            receipt.Show();
+            this.Close();
+        }
+
+        private void Sign_Out_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
