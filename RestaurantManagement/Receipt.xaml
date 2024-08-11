@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestaurantManagement"
         mc:Ignorable="d"
-        Title="Receipt" Height="450" Width="800">
-    <StackPanel x:Name="myStackPanel" Background="Aquamarine">
-        <!--<TextBlock x:Name="myTextBlock">Yo yo yo</TextBlock>-->
-    </StackPanel>
+        Title="Receipt" Height="600" Width="600">
+    <Grid Background="Aquamarine">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="myStackPanel" HorizontalAlignment="Center" Grid.Column="1">
+            <TextBlock FontFamily="Georgia" FontWeight="Bold" FontSize="30" TextAlignment="Center">My Receipt</TextBlock>
+        </StackPanel>
+        <DockPanel Grid.Column="0">
+            <Button DockPanel.Dock="Bottom" Height="100" FontFamily="Georgia" FontSize="20" Click="Back_Click" FontWeight="Bold" Margin="5, 5, 5, 5">Go Back</Button>
+        </DockPanel>
+        <DockPanel Grid.Column="2">
+            <Button DockPanel.Dock="Bottom" Height="100" FontFamily="Georgia" FontSize="20" Click="Save_Click" FontWeight="Bold" Margin="5, 5, 5, 5">Save Receipt</Button>
+        </DockPanel>
+    </Grid>
+    
 </Window>

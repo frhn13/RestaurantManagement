@@ -27,6 +27,7 @@ namespace RestaurantManagement
             for (int i = 0; i < 12; i++)
             {
                 menuItems.Add(new List<String>());  // Sets up 2d list to hold items later
+                itemTotals.Add(0);
             }
         }
 
@@ -37,29 +38,18 @@ namespace RestaurantManagement
             drinksTotal = 0;
 
             total += double.Parse(cheeseburgerBox.Text) * 8;
-            itemTotals.Add(double.Parse(cheeseburgerBox.Text) * 8);
             total += double.Parse(beefburgerBox.Text) * 10;
-            itemTotals.Add(double.Parse(beefburgerBox.Text) * 10);
             total += double.Parse(steakBox.Text) * 10.5;
-            itemTotals.Add(double.Parse(steakBox.Text) * 10.5);
-            total += double.Parse(sausagesBox.Text) * 8;
-            itemTotals.Add(double.Parse(sausagesBox.Text) * 8);
+            total += double.Parse(sausagesBox.Text) * 8; 
             total += double.Parse(chickenBurgerBox.Text) * 11;
-            itemTotals.Add(double.Parse(chickenBurgerBox.Text) * 11);
             total += double.Parse(veggieBurgerBox.Text) * 9;
-            itemTotals.Add(double.Parse(veggieBurgerBox.Text) * 9);
             total += double.Parse(orangeJuiceBox.Text) * 2;
-            itemTotals.Add(double.Parse(orangeJuiceBox.Text) * 2);
             total += double.Parse(appleJuiceBox.Text) * 2;
-            itemTotals.Add(double.Parse(appleJuiceBox.Text) * 2);
             total += double.Parse(teaBox.Text) * 2.5;
-            itemTotals.Add(double.Parse(teaBox.Text) * 2.5);
             total += double.Parse(coffeeBox.Text) * 3;
-            itemTotals.Add(double.Parse(coffeeBox.Text) * 3);
             total += double.Parse(colaBox.Text) * 2;
-            itemTotals.Add(double.Parse(colaBox.Text) * 2);
             total += double.Parse(lemonadeBox.Text) * 2.5;
-            itemTotals.Add(double.Parse(lemonadeBox.Text) * 2.5);
+            
 
             foodTotal += double.Parse(cheeseburgerBox.Text) * 8;
             foodTotal += double.Parse(beefburgerBox.Text) * 10;
@@ -154,6 +144,19 @@ namespace RestaurantManagement
             menuItems[10].Add(colaBox.Text);
             menuItems[11].Add("Lemonade");
             menuItems[11].Add(lemonadeBox.Text);
+
+            itemTotals[0] = (double.Parse(cheeseburgerBox.Text) * 8);
+            itemTotals[1] = (double.Parse(beefburgerBox.Text) * 10);
+            itemTotals[2] = (double.Parse(steakBox.Text) * 10.5);
+            itemTotals[3] = (double.Parse(sausagesBox.Text) * 8);
+            itemTotals[4] = (double.Parse(chickenBurgerBox.Text) * 11);
+            itemTotals[5] = (double.Parse(veggieBurgerBox.Text) * 9);
+            itemTotals[6] = (double.Parse(orangeJuiceBox.Text) * 2);
+            itemTotals[7] = (double.Parse(appleJuiceBox.Text) * 2);
+            itemTotals[8] = (double.Parse(teaBox.Text) * 2.5);
+            itemTotals[9] = (double.Parse(coffeeBox.Text) * 3);
+            itemTotals[10] = (double.Parse(colaBox.Text) * 2);
+            itemTotals[11] = (double.Parse(lemonadeBox.Text) * 2.5);
 
             Receipt receipt = new Receipt(menuItems, itemTotals, foodTotal, drinksTotal, total);
             receipt.Show();
