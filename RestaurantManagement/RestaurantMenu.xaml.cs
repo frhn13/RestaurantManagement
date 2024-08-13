@@ -10,6 +10,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Collections;
+using System.IO;
 
 namespace RestaurantManagement
 {
@@ -166,6 +167,27 @@ namespace RestaurantManagement
         private void Sign_Out_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Past_Receipts_Click(object sender, RoutedEventArgs e)
+        {
+            string[] specificReceipts;
+            try
+            {
+                string[] receipts = System.IO.File.ReadAllLines(@"receipts.txt");
+                specificReceipts = receipts;
+                for (int x = 0; x < receipts.Length; x++)
+                {
+                    string[] fields = receipts[x].Split(',');
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                throw new ApplicationException("Oopsies!");
+            }
+            PastReceipts pastReceipts = new PastReceipts(specificReceipts);
+            pastReceipts.Show();
+            this.Close();
         }
     }
 }
