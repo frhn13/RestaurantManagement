@@ -69,7 +69,6 @@ namespace RestaurantManagement
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            //FileManagement.saveReceipt();
             try
             {
                 using(System.IO.StreamWriter file = new System.IO.StreamWriter(@"receipts.txt", true))

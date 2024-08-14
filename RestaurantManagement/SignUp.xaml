@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RestaurantManagement"
         mc:Ignorable="d"
-        Title="SignUp" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="SignUp" Height="700" Width="450" Background="Aquamarine">
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock FontFamily="Georgia" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center">Restaurant Sign Up Page</TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="5, 10, 5, 5" HorizontalAlignment="Center">
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold">Username:</TextBlock>
+            <TextBox x:Name="usernameBox" FontFamily="Georgia" FontSize="15" Width="100" MaxLength="10"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5, 10, 5, 5" HorizontalAlignment="Center">
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold">Password:</TextBlock>
+            <TextBox x:Name="passwordBox" FontFamily="Georgia" FontSize="15" Width="100" MaxLength="10"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5, 10, 5, 5" HorizontalAlignment="Center">
+            <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold">Confirm Password:</TextBlock>
+            <TextBox x:Name="repeatPasswordBox" FontFamily="Georgia" FontSize="15" Width="100" MaxLength="10"></TextBox>
+        </StackPanel>
+        <Button Margin="5, 10, 5, 5" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Click="SignUp_Click" HorizontalAlignment="Center">Sign Up</Button>
+        <Button Margin="5, 10, 5, 5" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Click="Switch_Login_Click" HorizontalAlignment="Center">Switch to Login</Button>
+    </StackPanel>
 </Window>
