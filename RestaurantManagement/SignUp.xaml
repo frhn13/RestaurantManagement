@@ -14,11 +14,11 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="5, 10, 5, 5" HorizontalAlignment="Center">
             <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold">Password:</TextBlock>
-            <TextBox x:Name="passwordBox" FontFamily="Georgia" FontSize="15" Width="100" MaxLength="10"></TextBox>
+            <PasswordBox x:Name="passwordBox" FontFamily="Georgia" FontSize="15" Width="100" MaxLength="10" PasswordChar="*"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="5, 10, 5, 5" HorizontalAlignment="Center">
             <TextBlock FontFamily="Georgia" FontSize="15" FontWeight="Bold">Confirm Password:</TextBlock>
-            <TextBox x:Name="repeatPasswordBox" FontFamily="Georgia" FontSize="15" Width="100" MaxLength="10"></TextBox>
+            <PasswordBox x:Name="repeatPasswordBox" FontFamily="Georgia" FontSize="15" Width="100" MaxLength="10" PasswordChar="*"/>
         </StackPanel>
         <Button Margin="5, 10, 5, 5" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Click="SignUp_Click" HorizontalAlignment="Center">Sign Up</Button>
         <Button Margin="5, 10, 5, 5" FontFamily="Georgia" FontSize="15" FontWeight="Bold" Click="Switch_Login_Click" HorizontalAlignment="Center">Switch to Login</Button>

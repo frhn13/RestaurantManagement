@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -20,13 +21,15 @@ namespace RestaurantManagement
         double savedTotal;
         double savedFoodTotal;
         double savedDrinksTotal;
+        string passedUsername;
 
-        public Receipt(List<List<string>> menuItems, List<double> itemTotals, double foodTotal, double drinksTotal, double total)
+        public Receipt(string username, List<List<string>> menuItems, List<double> itemTotals, double foodTotal, double drinksTotal, double total)
         {
             InitializeComponent();
             savedTotal = total;
             savedFoodTotal = foodTotal;
             savedDrinksTotal = drinksTotal;
+            passedUsername = username;
             for (int x=0; x < menuItems.Count; x++)
             {
                 myStackPanel.Children.Add(new TextBlock()
@@ -73,10 +76,10 @@ namespace RestaurantManagement
             {
                 using(System.IO.StreamWriter file = new System.IO.StreamWriter(@"receipts.txt", true))
                 {
-                    file.WriteLine(savedTotal + "," + savedFoodTotal + "," + savedDrinksTotal);
+                    file.WriteLine(passedUsername + "," + savedTotal + "," + savedFoodTotal + "," + savedDrinksTotal);
                 }
             }
-            catch (Exception ex)
+            catch (FileNotFoundException ex)
             {
                 throw new ApplicationException("Oopsies!");
             }
@@ -84,7 +87,7 @@ namespace RestaurantManagement
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            RestaurantMenu restaurantMenu = new RestaurantMenu();
+            RestaurantMenu restaurantMenu = new RestaurantMenu(passedUsername);
             restaurantMenu.Show();
             this.Close();
         }

@@ -21,8 +21,9 @@ namespace RestaurantManagement
         double total;
         double foodTotal;
         double drinksTotal;
+        string passedUsername;
 
-        public RestaurantMenu()
+        public RestaurantMenu(string username)
         {
             InitializeComponent();
             for (int i = 0; i < 12; i++)
@@ -30,6 +31,7 @@ namespace RestaurantManagement
                 menuItems.Add(new List<String>());  // Sets up 2d list to hold items later
                 itemTotals.Add(0);
             }
+            passedUsername = username;
         }
 
         private void Total_Click(object sender, RoutedEventArgs e)
@@ -159,14 +161,16 @@ namespace RestaurantManagement
             itemTotals[10] = (double.Parse(colaBox.Text) * 2);
             itemTotals[11] = (double.Parse(lemonadeBox.Text) * 2.5);
 
-            Receipt receipt = new Receipt(menuItems, itemTotals, foodTotal, drinksTotal, total);
+            Receipt receipt = new Receipt(passedUsername, menuItems, itemTotals, foodTotal, drinksTotal, total);
             receipt.Show();
             this.Close();
         }
 
         private void Sign_Out_Click(object sender, RoutedEventArgs e)
         {
-
+            Login login = new Login();
+            login.Show();
+            this.Close();
         }
 
         private void Past_Receipts_Click(object sender, RoutedEventArgs e)
@@ -176,18 +180,15 @@ namespace RestaurantManagement
             {
                 string[] receipts = System.IO.File.ReadAllLines(@"receipts.txt");
                 specificReceipts = receipts;
-                for (int x = 0; x < receipts.Length; x++)
-                {
-                    string[] fields = receipts[x].Split(',');
-                }
+                PastReceipts pastReceipts = new PastReceipts(passedUsername, specificReceipts);
+                pastReceipts.Show();
+                this.Close();
             }
             catch (FileNotFoundException ex)
             {
-                throw new ApplicationException("Oopsies!");
+                MessageBox.Show("No receipts saved yet.");
             }
-            PastReceipts pastReceipts = new PastReceipts(specificReceipts);
-            pastReceipts.Show();
-            this.Close();
+            
         }
     }
 }

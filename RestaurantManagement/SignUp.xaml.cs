@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,10 +29,21 @@ namespace RestaurantManagement
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
             username = usernameBox.Text;
-            password = passwordBox.Text;
-            repeatPassword = repeatPasswordBox.Text;
+            password = passwordBox.Password.ToString();
+            repeatPassword = repeatPasswordBox.Password.ToString();
+            bool alreadyUsed = false;
 
-            if (username.Length >= 4 && password.Equals(repeatPassword) && password.Length >= 4 && password.Any(char.IsDigit) && password.Any(char.IsLetter))
+            string[] usernames = System.IO.File.ReadAllLines(@"users.txt");
+            for (int x = 0; x < usernames.Length; x++)
+            {
+                string[] fields = usernames[x].Split(',');
+                if (fields[0].Equals(username))
+                {
+                    alreadyUsed = true;
+                }
+            }
+
+                if (username.Length >= 4 && password.Equals(repeatPassword) && password.Length >= 4 && password.Any(char.IsDigit) && password.Any(char.IsLetter) && !alreadyUsed)
             {
                 try
                 {
@@ -39,25 +51,31 @@ namespace RestaurantManagement
                     {
                         file.WriteLine(username + "," + password);
                     }
+                    Login login = new Login();
+                    login.Show();
+                    this.Close();
                 }
-                catch (Exception ex)
+                catch (FileNotFoundException ex)
                 {
                     throw new ApplicationException("Oopsies!");
                 }
-                Login login = new Login();
-                login.Show();
-                this.Close();
             }
+
             else
             {
-                if (username.Length < 4 || password.Length < 4)
-                    MessageBox.Show("Username or password is too short");
-                if (!password.Equals(repeatPassword))
-                    MessageBox.Show("Passwords aren't matching");
-                if (!password.Any(char.IsDigit))
-                    MessageBox.Show("Password must include a number");
-                if (!password.Any(char.IsLetter))
-                    MessageBox.Show("Password must include a letter");
+                if (alreadyUsed)
+                    MessageBox.Show("Username is aleady in use");
+                else
+                {
+                    if (username.Length < 4 || password.Length < 4)
+                        MessageBox.Show("Username or password is too short");
+                    if (!password.Equals(repeatPassword))
+                        MessageBox.Show("Passwords aren't matching");
+                    if (!password.Any(char.IsDigit))
+                        MessageBox.Show("Password must include a number");
+                    if (!password.Any(char.IsLetter))
+                        MessageBox.Show("Password must include a letter");
+                }
             }
         }
 

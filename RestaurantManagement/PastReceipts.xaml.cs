@@ -16,37 +16,43 @@ namespace RestaurantManagement
 {
     public partial class PastReceipts : Window
     {
-        public PastReceipts(string[] receipts)
+        string passedUsername;
+        public PastReceipts(string username, string[] receipts)
         {
             InitializeComponent();
 
+            passedUsername = username;
             for (int x=0; x < receipts.Length; x++)
             {
                 string[] fields = receipts[x].Split(',');
-                myStackPanelPastReceipts.Children.Add(new TextBlock()
+                if (fields[0].Equals(username))
                 {
-                    Text = $"Receipt {x + 1}",
-                    FontSize = 30,  // Styled the text as well 
-                    Margin = new Thickness(5, 20, 5, 5),
-                    FontFamily = new FontFamily("Georgia"),
-                    TextAlignment = TextAlignment.Center,
-                    FontWeight = FontWeights.Bold,
-                });
-                myStackPanelPastReceipts.Children.Add(new TextBlock()
-                {
-                    Text = $"Total Cost: £{fields[0]} \n Cost of Food: £{fields[1]} \n Cost of Drinks: £{fields[2]}",
-                    FontSize = 20,  // Styled the text as well 
-                    Margin = new Thickness(5, 5, 5, 5),
-                    FontFamily = new FontFamily("Georgia"),
-                    TextAlignment = TextAlignment.Center
-                });
+                    myStackPanelPastReceipts.Children.Add(new TextBlock()
+                    {
+                        Text = $"Receipt {x + 1}",
+                        FontSize = 30,  // Styled the text as well 
+                        Margin = new Thickness(5, 20, 5, 5),
+                        FontFamily = new FontFamily("Georgia"),
+                        TextAlignment = TextAlignment.Center,
+                        FontWeight = FontWeights.Bold,
+                    });
+                    myStackPanelPastReceipts.Children.Add(new TextBlock()
+                    {
+                        Text = $"Cost of Food: £{fields[2]} " +
+                        $"\n Cost of Drinks: £{fields[3]} \n Total before VAT: £{Math.Round(Convert.ToDouble(fields[1]) * 0.8, 2)} " +
+                        $"\n VAT: £{Math.Round(Convert.ToDouble(fields[1]) * 0.2, 2)} \n Total Cost: £{fields[1]}",
+                        FontSize = 20,  // Styled the text as well 
+                        Margin = new Thickness(5, 5, 5, 5),
+                        FontFamily = new FontFamily("Georgia"),
+                        TextAlignment = TextAlignment.Center
+                    });
+                }
             }
-           
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            RestaurantMenu restaurantMenu = new RestaurantMenu();
+            RestaurantMenu restaurantMenu = new RestaurantMenu(passedUsername);
             restaurantMenu.Show();
             this.Close();
         }
