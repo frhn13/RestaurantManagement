@@ -22,6 +22,7 @@ namespace RestaurantManagement
         double foodTotal;
         double drinksTotal;
         string passedUsername;
+        bool receiptViewable;
 
         public RestaurantMenu(string username)
         {
@@ -32,6 +33,7 @@ namespace RestaurantManagement
                 itemTotals.Add(0);
             }
             passedUsername = username;
+            receiptViewable = false;
         }
 
         private void Total_Click(object sender, RoutedEventArgs e)
@@ -73,7 +75,7 @@ namespace RestaurantManagement
             beforeVatBlock.Text = $"Total before VAT: £{Math.Round(total * 0.8, 2)}";
             vatBlock.Text = $"VAT: £{Math.Round(total * 0.2, 2)}";
             afterVatBlock.Text = $"Total after VAT: £{Math.Round(total, 2)}";
-
+            receiptViewable = true;
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
@@ -97,7 +99,7 @@ namespace RestaurantManagement
             beforeVatBlock.Text = $"Total before VAT:";
             vatBlock.Text = $"VAT:";
             afterVatBlock.Text = $"Total after VAT:";
-            
+            receiptViewable = false;
         }
 
         private void NumberInputValidation(object sender, TextCompositionEventArgs e) // Checks amount entered is a number
@@ -122,48 +124,53 @@ namespace RestaurantManagement
 
         private void Receipt_Click(object sender, RoutedEventArgs e)
         {
-            menuItems[0].Add("Cheeseburger");
-            menuItems[0].Add(cheeseburgerBox.Text);
-            menuItems[1].Add("Beefburger");
-            menuItems[1].Add(beefburgerBox.Text);
-            menuItems[2].Add("Steak");
-            menuItems[2].Add(steakBox.Text);
-            menuItems[3].Add("Sausages");
-            menuItems[3].Add(sausagesBox.Text);
-            menuItems[4].Add("Chicken Burger");
-            menuItems[4].Add(chickenBurgerBox.Text);
-            menuItems[5].Add("Veggie Burger");
-            menuItems[5].Add(veggieBurgerBox.Text);
+            if (receiptViewable)
+            {
+                menuItems[0].Add("Cheeseburger");
+                menuItems[0].Add(cheeseburgerBox.Text);
+                menuItems[1].Add("Beefburger");
+                menuItems[1].Add(beefburgerBox.Text);
+                menuItems[2].Add("Steak");
+                menuItems[2].Add(steakBox.Text);
+                menuItems[3].Add("Sausages");
+                menuItems[3].Add(sausagesBox.Text);
+                menuItems[4].Add("Chicken Burger");
+                menuItems[4].Add(chickenBurgerBox.Text);
+                menuItems[5].Add("Veggie Burger");
+                menuItems[5].Add(veggieBurgerBox.Text);
 
-            menuItems[6].Add("Orange Juice");
-            menuItems[6].Add(orangeJuiceBox.Text);
-            menuItems[7].Add("Apple Juice");
-            menuItems[7].Add(appleJuiceBox.Text);
-            menuItems[8].Add("Tea");
-            menuItems[8].Add(teaBox.Text);
-            menuItems[9].Add("Coffee");
-            menuItems[9].Add(coffeeBox.Text);
-            menuItems[10].Add("Cola");
-            menuItems[10].Add(colaBox.Text);
-            menuItems[11].Add("Lemonade");
-            menuItems[11].Add(lemonadeBox.Text);
+                menuItems[6].Add("Orange Juice");
+                menuItems[6].Add(orangeJuiceBox.Text);
+                menuItems[7].Add("Apple Juice");
+                menuItems[7].Add(appleJuiceBox.Text);
+                menuItems[8].Add("Tea");
+                menuItems[8].Add(teaBox.Text);
+                menuItems[9].Add("Coffee");
+                menuItems[9].Add(coffeeBox.Text);
+                menuItems[10].Add("Cola");
+                menuItems[10].Add(colaBox.Text);
+                menuItems[11].Add("Lemonade");
+                menuItems[11].Add(lemonadeBox.Text);
 
-            itemTotals[0] = (double.Parse(cheeseburgerBox.Text) * 8);
-            itemTotals[1] = (double.Parse(beefburgerBox.Text) * 10);
-            itemTotals[2] = (double.Parse(steakBox.Text) * 10.5);
-            itemTotals[3] = (double.Parse(sausagesBox.Text) * 8);
-            itemTotals[4] = (double.Parse(chickenBurgerBox.Text) * 11);
-            itemTotals[5] = (double.Parse(veggieBurgerBox.Text) * 9);
-            itemTotals[6] = (double.Parse(orangeJuiceBox.Text) * 2);
-            itemTotals[7] = (double.Parse(appleJuiceBox.Text) * 2);
-            itemTotals[8] = (double.Parse(teaBox.Text) * 2.5);
-            itemTotals[9] = (double.Parse(coffeeBox.Text) * 3);
-            itemTotals[10] = (double.Parse(colaBox.Text) * 2);
-            itemTotals[11] = (double.Parse(lemonadeBox.Text) * 2.5);
+                itemTotals[0] = (double.Parse(cheeseburgerBox.Text) * 8);
+                itemTotals[1] = (double.Parse(beefburgerBox.Text) * 10);
+                itemTotals[2] = (double.Parse(steakBox.Text) * 10.5);
+                itemTotals[3] = (double.Parse(sausagesBox.Text) * 8);
+                itemTotals[4] = (double.Parse(chickenBurgerBox.Text) * 11);
+                itemTotals[5] = (double.Parse(veggieBurgerBox.Text) * 9);
+                itemTotals[6] = (double.Parse(orangeJuiceBox.Text) * 2);
+                itemTotals[7] = (double.Parse(appleJuiceBox.Text) * 2);
+                itemTotals[8] = (double.Parse(teaBox.Text) * 2.5);
+                itemTotals[9] = (double.Parse(coffeeBox.Text) * 3);
+                itemTotals[10] = (double.Parse(colaBox.Text) * 2);
+                itemTotals[11] = (double.Parse(lemonadeBox.Text) * 2.5);
 
-            Receipt receipt = new Receipt(passedUsername, menuItems, itemTotals, foodTotal, drinksTotal, total);
-            receipt.Show();
-            this.Close();
+                Receipt receipt = new Receipt(passedUsername, menuItems, itemTotals, foodTotal, drinksTotal, total);
+                receipt.Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Please calculate the total first before viewing the receipt");
         }
 
         private void Sign_Out_Click(object sender, RoutedEventArgs e)
@@ -189,6 +196,13 @@ namespace RestaurantManagement
                 MessageBox.Show("No receipts saved yet.");
             }
             
+        }
+
+        private void Calc_Click(object sender, RoutedEventArgs e)
+        {
+            Calculator calculator = new Calculator(passedUsername);
+            calculator.Show();
+            this.Close();
         }
     }
 }
