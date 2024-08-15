@@ -17,8 +17,6 @@ namespace RestaurantManagement
     public partial class Calculator : Window
     {
         string passedUsername;
-        double calcContents;
-        double currentCalcValue;
         int maxLength = 10;
         char calcMode = 'N';
 
@@ -26,7 +24,7 @@ namespace RestaurantManagement
         {
             InitializeComponent();
             passedUsername = username;
-            calcContents = 0;
+            calcModeBox.Text = String.Empty;
         }
 
         private void Button_Click_0(object sender, RoutedEventArgs e)
@@ -91,21 +89,42 @@ namespace RestaurantManagement
 
         private void Button_Click_Decimal(object sender, RoutedEventArgs e)
         {
-            if (currentContents.Text.Length < maxLength - 1)
+            if (currentContents.Text.Length < maxLength - 1 && !currentContents.Text.Contains(".") && currentContents.Text != String.Empty)
                 currentContents.Text += ".";
         }
 
         private void Button_Click_Equals(object sender, RoutedEventArgs e)
         {
-            
+            if (currentContents.Text != String.Empty)
+            {
+                switch (calcMode)
+                {
+                    case '+':
+                        currentContents.Text = (Double.Parse(currentContents.Text) + Double.Parse(previousContents.Text)).ToString();
+                        break;
+                    case '-':
+                        currentContents.Text = (Double.Parse(previousContents.Text) - Double.Parse(currentContents.Text)).ToString();
+                        break;
+                    case '*':
+                        currentContents.Text = (Double.Parse(previousContents.Text) * Double.Parse(currentContents.Text)).ToString();
+                        break;
+                    case '/':
+                        currentContents.Text = (Double.Parse(previousContents.Text) / Double.Parse(currentContents.Text)).ToString();
+                        break;
+                    default:
+                        break;
+                }
+                previousContents.Text = String.Empty;
+                calcMode = 'N';
+            }
         }
 
         private void Button_Click_AC(object sender, RoutedEventArgs e)
         {
             currentContents.Text = String.Empty;
             previousContents.Text = String.Empty;
-            calcContents = 0;
             calcMode = 'N';
+            calcModeBox.Text = String.Empty;
         }
 
         private void Button_Click_Multiply(object sender, RoutedEventArgs e)
@@ -116,11 +135,10 @@ namespace RestaurantManagement
                     previousContents.Text = currentContents.Text;
                 else
                     Calculate();
-                currentCalcValue = Double.Parse(currentContents.Text);
                 currentContents.Text = String.Empty;
-                calcContents = Double.Parse(previousContents.Text);
             }
             calcMode = '*';
+            calcModeBox.Text = calcMode.ToString();
         }
 
         private void Button_Click_Divide(object sender, RoutedEventArgs e)
@@ -131,11 +149,10 @@ namespace RestaurantManagement
                     previousContents.Text = currentContents.Text;
                 else
                     Calculate();
-                currentCalcValue = Double.Parse(currentContents.Text);
                 currentContents.Text = String.Empty;
-                calcContents = Double.Parse(previousContents.Text);
             }
             calcMode = '/';
+            calcModeBox.Text = calcMode.ToString();
         }
 
         private void Button_Click_Plus(object sender, RoutedEventArgs e)
@@ -146,11 +163,10 @@ namespace RestaurantManagement
                     previousContents.Text = currentContents.Text;
                 else
                     Calculate();
-                currentCalcValue = Double.Parse(currentContents.Text);
                 currentContents.Text = String.Empty;
-                calcContents = Double.Parse(previousContents.Text);
             }
             calcMode = '+';
+            calcModeBox.Text = calcMode.ToString();
         }
 
         private void Button_Click_Minus(object sender, RoutedEventArgs e)
@@ -161,11 +177,10 @@ namespace RestaurantManagement
                     previousContents.Text = currentContents.Text;
                 else
                     Calculate();
-                currentCalcValue = Double.Parse(currentContents.Text);
                 currentContents.Text = String.Empty;
-                calcContents = Double.Parse(previousContents.Text);
             }
             calcMode = '-';
+            calcModeBox.Text = calcMode.ToString();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -194,6 +209,12 @@ namespace RestaurantManagement
                 default:
                     break;
             }
+        }
+
+        private void Button_Click_Delete(object sender, RoutedEventArgs e)
+        {
+            if (currentContents.Text != String.Empty)
+                currentContents.Text = currentContents.Text.Remove(currentContents.Text.Length - 1);
         }
     }
 }
